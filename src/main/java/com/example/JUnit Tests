@@ -1,0 +1,21 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class PaymentServiceTest {
+    PaymentService service = new PaymentService();
+
+    @Test
+    void testSuccessfulTransaction() {
+        assertEquals("SUCCESS", service.processTransaction(250.0, "1234567812345678"));
+    }
+
+    @Test
+    void testFailureInvalidAmount() {
+        assertEquals("FAILURE", service.processTransaction(-50.0, "1234567812345678"));
+    }
+
+    @Test
+    void testFailureInvalidCard() {
+        assertEquals("FAILURE", service.processTransaction(100.0, "123-invalid"));
+    }
+}
