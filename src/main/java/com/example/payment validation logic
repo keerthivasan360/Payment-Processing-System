@@ -1,0 +1,16 @@
+public class PaymentService {
+    public boolean validatePayment(double amount, String cardNumber) {
+        // Basic business logic
+        if (amount <= 0 || amount > 10000) return false;
+        if (cardNumber == null || !cardNumber.matches("\\d{16}")) return false;
+        
+        return true;
+    }
+
+    public String processTransaction(double amount, String cardNumber) {
+        if (validatePayment(amount, cardNumber)) {
+            return "SUCCESS";
+        }
+        return "FAILURE";
+    }
+}
